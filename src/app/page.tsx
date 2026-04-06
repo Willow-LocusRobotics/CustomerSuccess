@@ -5,7 +5,7 @@ import {
   FolderOpen,
   PlusCircle,
   BookOpen,
-  LayoutDashboard,
+  Library,
   Search,
   ArrowRight,
   Headset,
@@ -36,10 +36,10 @@ const quickActions = [
     color: "bg-emerald-600",
   },
   {
-    title: "Dashboard",
-    description: "View support metrics and reporting",
-    href: "/dashboard",
-    icon: LayoutDashboard,
+    title: "Resources",
+    description: "Dashboards, LocusHub, Lokimon, and more",
+    href: "/resources/dashboards",
+    icon: Library,
     color: "bg-violet-600",
   },
 ];
