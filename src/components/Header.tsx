@@ -1,27 +1,83 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
   Menu,
   X,
   Headset,
-  LayoutDashboard,
   BookOpen,
   FolderOpen,
+  Library,
+  BarChart3,
+  Cpu,
+  Activity,
+  Wrench,
+  ChevronDown,
 } from "lucide-react";
 
 const navLinks = [
   { href: "/", label: "Support Home", icon: Headset },
   { href: "/cases", label: "My Cases", icon: FolderOpen },
   { href: "/knowledge", label: "Knowledge Base", icon: BookOpen },
-  { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
+];
+
+const resourcesSubMenu = [
+  {
+    href: "/resources/dashboards",
+    label: "Dashboards / Reports",
+    icon: BarChart3,
+    description: "Support metrics and reporting",
+  },
+  {
+    href: "/resources/locushub",
+    label: "LocusHub",
+    icon: Cpu,
+    description: "Central operations hub",
+  },
+  {
+    href: "/resources/lokimon",
+    label: "Lokimon",
+    icon: Activity,
+    description: "Fleet monitoring and diagnostics",
+  },
+  {
+    href: "/resources/tools",
+    label: "Additional Tools",
+    icon: Wrench,
+    description: "Utilities and integrations",
+  },
 ];
 
 export default function Header() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [resourcesOpen, setResourcesOpen] = useState(false);
+  const [mobileResourcesOpen, setMobileResourcesOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  const isResourcesActive = pathname.startsWith("/resources");
+
+  // Close dropdown on outside click
+  useEffect(() => {
+    function handleClickOutside(e: MouseEvent) {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(e.target as Node)
+      ) {
+        setResourcesOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  // Close dropdown on route change
+  useEffect(() => {
+    setResourcesOpen(false);
+    setMobileOpen(false);
+  }, [pathname]);
 
   return (
     <header className="bg-locus-navy sticky top-0 z-50 shadow-lg">
@@ -64,6 +120,69 @@ export default function Header() {
                 </Link>
               );
             })}
+
+            {/* Resources Dropdown */}
+            <div className="relative" ref={dropdownRef}>
+              <button
+                onClick={() => setResourcesOpen(!resourcesOpen)}
+                className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+                  isResourcesActive
+                    ? "bg-locus-blue/15 text-locus-blue"
+                    : "text-locus-gray-200 hover:text-white hover:bg-white/5"
+                }`}
+              >
+                <Library className="w-4 h-4" />
+                Resources
+                <ChevronDown
+                  className={`w-3.5 h-3.5 transition-transform duration-200 ${
+                    resourcesOpen ? "rotate-180" : ""
+                  }`}
+                />
+              </button>
+
+              {resourcesOpen && (
+                <div className="absolute top-full right-0 mt-2 w-72 bg-locus-navy border border-white/10 rounded-xl shadow-2xl overflow-hidden animate-in fade-in slide-in-from-top-2 duration-150">
+                  <div className="p-2">
+                    {resourcesSubMenu.map((item) => {
+                      const isItemActive = pathname === item.href;
+                      return (
+                        <Link
+                          key={item.href}
+                          href={item.href}
+                          className={`flex items-start gap-3 px-3 py-3 rounded-lg transition-all duration-150 ${
+                            isItemActive
+                              ? "bg-locus-blue/15 text-locus-blue"
+                              : "text-locus-gray-200 hover:text-white hover:bg-white/5"
+                          }`}
+                        >
+                          <div
+                            className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 mt-0.5 ${
+                              isItemActive
+                                ? "bg-locus-blue/20"
+                                : "bg-white/5"
+                            }`}
+                          >
+                            <item.icon className="w-4 h-4" />
+                          </div>
+                          <div>
+                            <p className="text-sm font-medium">{item.label}</p>
+                            <p
+                              className={`text-xs mt-0.5 ${
+                                isItemActive
+                                  ? "text-locus-blue/70"
+                                  : "text-locus-gray-400"
+                              }`}
+                            >
+                              {item.description}
+                            </p>
+                          </div>
+                        </Link>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+            </div>
           </nav>
 
           {/* User area */}
@@ -78,7 +197,11 @@ export default function Header() {
             className="md:hidden text-white p-2"
             onClick={() => setMobileOpen(!mobileOpen)}
           >
-            {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            {mobileOpen ? (
+              <X className="w-5 h-5" />
+            ) : (
+              <Menu className="w-5 h-5" />
+            )}
           </button>
         </div>
       </div>
@@ -108,6 +231,48 @@ export default function Header() {
                 </Link>
               );
             })}
+
+            {/* Mobile Resources Accordion */}
+            <button
+              onClick={() => setMobileResourcesOpen(!mobileResourcesOpen)}
+              className={`w-full flex items-center justify-between px-4 py-3 rounded-lg text-sm font-medium transition-all ${
+                isResourcesActive
+                  ? "bg-locus-blue/15 text-locus-blue"
+                  : "text-locus-gray-200 hover:text-white hover:bg-white/5"
+              }`}
+            >
+              <span className="flex items-center gap-3">
+                <Library className="w-4 h-4" />
+                Resources
+              </span>
+              <ChevronDown
+                className={`w-3.5 h-3.5 transition-transform duration-200 ${
+                  mobileResourcesOpen ? "rotate-180" : ""
+                }`}
+              />
+            </button>
+            {mobileResourcesOpen && (
+              <div className="pl-6 space-y-1">
+                {resourcesSubMenu.map((item) => {
+                  const isItemActive = pathname === item.href;
+                  return (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      onClick={() => setMobileOpen(false)}
+                      className={`flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm transition-all ${
+                        isItemActive
+                          ? "bg-locus-blue/15 text-locus-blue font-medium"
+                          : "text-locus-gray-400 hover:text-white hover:bg-white/5"
+                      }`}
+                    >
+                      <item.icon className="w-3.5 h-3.5" />
+                      {item.label}
+                    </Link>
+                  );
+                })}
+              </div>
+            )}
           </nav>
         </div>
       )}
