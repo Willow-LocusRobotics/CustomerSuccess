@@ -1,20 +1,25 @@
 @import "tailwindcss";
 
 :root {
-  --locus-blue: #25A9E0;
-  --locus-dark: #004D71;
-  --locus-navy: #001E2D;
-  --locus-light-blue: #E8F6FC;
-  --locus-gray-50: #F8FAFB;
-  --locus-gray-100: #EEF2F5;
-  --locus-gray-200: #D8DFE5;
-  --locus-gray-400: #8E9DAA;
-  --locus-gray-600: #4A5B6A;
-  --locus-gray-800: #1E2D3A;
-  --locus-white: #FFFFFF;
-  --locus-green: #10B981;
-  --locus-amber: #F59E0B;
-  --locus-red: #EF4444;
+  /* Official Locus Robotics brand colors */
+  --locus-blue: #27aae1;        /* Primary - Locus Blue */
+  --locus-secondary: #00609c;   /* Secondary Blue */
+  --locus-dark: #004d71;        /* Tertiary Blue */
+  --locus-navy: #003e52;        /* Neutral Blue */
+  --locus-dark-gray: #595959;   /* Dark Gray */
+  --locus-light-gray: #c9c9c9;  /* Light Gray */
+
+  --locus-light-blue: #e8f6fc;
+  --locus-gray-50: #f8fafb;
+  --locus-gray-100: #eef2f5;
+  --locus-gray-200: #d8dfe5;
+  --locus-gray-400: #8e9daa;
+  --locus-gray-600: #4a5b6a;
+  --locus-gray-800: #1e2d3a;
+  --locus-white: #ffffff;
+  --locus-green: #10b981;
+  --locus-amber: #f59e0b;
+  --locus-red: #ef4444;
 
   --background: var(--locus-gray-50);
   --foreground: var(--locus-gray-800);
@@ -24,8 +29,11 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-locus-blue: var(--locus-blue);
+  --color-locus-secondary: var(--locus-secondary);
   --color-locus-dark: var(--locus-dark);
   --color-locus-navy: var(--locus-navy);
+  --color-locus-dark-gray: var(--locus-dark-gray);
+  --color-locus-light-gray: var(--locus-light-gray);
   --color-locus-light-blue: var(--locus-light-blue);
   --color-locus-gray-50: var(--locus-gray-50);
   --color-locus-gray-100: var(--locus-gray-100);
@@ -37,12 +45,32 @@
   --color-locus-green: var(--locus-green);
   --color-locus-amber: var(--locus-amber);
   --color-locus-red: var(--locus-red);
+  --font-roboto: 'Roboto', sans-serif;
+  --font-roboto-condensed: 'Roboto Condensed', sans-serif;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+}
+
+/* Typography per Locus style guide */
+h1 {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300; /* Roboto Light */
+}
+
+h2 {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700; /* Roboto Bold */
+}
+
+h3 {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700; /* Roboto Bold */
 }
 
 /* Smooth scrolling */
