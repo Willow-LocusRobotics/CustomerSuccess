@@ -1,0 +1,69 @@
+@import "tailwindcss";
+
+:root {
+  --locus-blue: #25A9E0;
+  --locus-dark: #004D71;
+  --locus-navy: #001E2D;
+  --locus-light-blue: #E8F6FC;
+  --locus-gray-50: #F8FAFB;
+  --locus-gray-100: #EEF2F5;
+  --locus-gray-200: #D8DFE5;
+  --locus-gray-400: #8E9DAA;
+  --locus-gray-600: #4A5B6A;
+  --locus-gray-800: #1E2D3A;
+  --locus-white: #FFFFFF;
+  --locus-green: #10B981;
+  --locus-amber: #F59E0B;
+  --locus-red: #EF4444;
+
+  --background: var(--locus-gray-50);
+  --foreground: var(--locus-gray-800);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-locus-blue: var(--locus-blue);
+  --color-locus-dark: var(--locus-dark);
+  --color-locus-navy: var(--locus-navy);
+  --color-locus-light-blue: var(--locus-light-blue);
+  --color-locus-gray-50: var(--locus-gray-50);
+  --color-locus-gray-100: var(--locus-gray-100);
+  --color-locus-gray-200: var(--locus-gray-200);
+  --color-locus-gray-400: var(--locus-gray-400);
+  --color-locus-gray-600: var(--locus-gray-600);
+  --color-locus-gray-800: var(--locus-gray-800);
+  --color-locus-white: var(--locus-white);
+  --color-locus-green: var(--locus-green);
+  --color-locus-amber: var(--locus-amber);
+  --color-locus-red: var(--locus-red);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--locus-gray-100);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--locus-gray-400);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--locus-gray-600);
+}
