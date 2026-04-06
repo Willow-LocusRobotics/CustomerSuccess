@@ -1,3 +1,5 @@
+export const dynamic = "force-static";
+
 import { NextRequest, NextResponse } from "next/server";
 import { getCases, createCase, type CreateCasePayload } from "@/lib/salesforce";
 
