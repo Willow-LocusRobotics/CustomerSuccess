@@ -1,5 +1,13 @@
 # Incident Triage — Azure Functions + Power Automate
 
+> 🧭 **New to this?** Follow the step-by-step walkthrough in
+> [DEPLOY.md](./DEPLOY.md). It covers installing tools, creating the AD app
+> registration, Slack webhook, Function App, and Power Automate flow from
+> scratch — and calls out which steps require IT involvement.
+>
+> This README is the short reference for people who already know the
+> Azure / PA stack.
+
 Hosts the Outlook → Claude → Slack incident-triage agent as an Azure Function
 so that Power Automate (running on the Locus Robotics recurrence schedule) can
 invoke it without leaving the Microsoft tenant.
