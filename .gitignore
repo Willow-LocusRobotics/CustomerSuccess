@@ -39,3 +39,11 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# azure functions
+/azure-functions/node_modules/
+/azure-functions/dist/
+/azure-functions/local.settings.json
+/azure-functions/.python_packages/
+/azure-functions/bin/
+/azure-functions/obj/

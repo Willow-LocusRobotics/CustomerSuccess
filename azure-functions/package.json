@@ -1,0 +1,26 @@
+{
+  "name": "incident-triage-functions",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Azure Functions app that hosts the Outlook -> Claude -> Slack incident triage agent so Power Automate (or any scheduled caller) can invoke it in the Locus Robotics tenant.",
+  "main": "dist/azure-functions/src/functions/*.js",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "clean": "rm -rf dist",
+    "prestart": "npm run clean && npm run build",
+    "start": "func start",
+    "package": "npm run clean && npm run build"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.88.0",
+    "@azure/functions": "^4.7.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "typescript": "^5"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

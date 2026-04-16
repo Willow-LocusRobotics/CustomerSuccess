@@ -1,0 +1,21 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "FUNCTIONS_WORKER_RUNTIME": "node",
+    "FUNCTIONS_EXTENSION_VERSION": "~4",
+
+    "ANTHROPIC_API_KEY": "sk-ant-...",
+
+    "MS_GRAPH_TENANT_ID": "00000000-0000-0000-0000-000000000000",
+    "MS_GRAPH_CLIENT_ID": "00000000-0000-0000-0000-000000000000",
+    "MS_GRAPH_CLIENT_SECRET": "your_client_secret",
+    "MS_GRAPH_MAILBOX": "support@example.com",
+
+    "SLACK_INCIDENT_WEBHOOK_URL": "https://hooks.slack.com/services/XXX/YYY/ZZZ",
+    "SLACK_INCIDENT_CHANNEL": "#support-incidents",
+
+    "INCIDENT_AGENT_TIMER_SCHEDULE": "0 */15 * * * *",
+    "INCIDENT_AGENT_TIMER_ENABLED": "false"
+  }
+}
